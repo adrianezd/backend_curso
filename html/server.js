@@ -4,7 +4,10 @@ const app = express();
 
 app.set('view engine','ejs');
 
-app.use('/assets',express.static('assets')) //inserta en middleware
+app.use('/assets',express.static('assets',{
+    etag: false,
+    maxAge: '5h' //cache 5 horas 
+})) //inserta en middleware
 
 app.get('/',function(req,res){
   res.render('index');
